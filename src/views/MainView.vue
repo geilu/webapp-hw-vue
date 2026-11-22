@@ -26,8 +26,5 @@ onMounted(() => {
         />
       </section>
     </div>
-    <div>
-      <p>text</p>
-    </div>
   </div>
 </template>
