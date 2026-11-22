@@ -8,10 +8,12 @@ const props = defineProps({
   date: { type: String, default: "" },
   imageURL: { type: String, default: "" },
   content: { type: String, default: "" },
+  likes: { type: Number, default: 0 },
 });
 
 const showingFallback = ref(false);
 const fallbackFailed = ref(false);
+const emit = defineEmits(["like"]);
 
 const profileImageSrc = computed(() =>
   props.profileImageURL && !showingFallback.value
@@ -50,6 +52,7 @@ function handleProfileImageError() {
     </div>
 
     <p class="post-content">{{ content }}</p>
+    <button @click="emit('like')" class="like-button">{{ likes }} Like</button>
   </article>
 </template>
 l
@@ -84,5 +87,17 @@ l
   display: block;
   width: 3em;
   height: 3em;
+}
+.like-button {
+  border: none;
+  cursor: pointer;
+  background-color: var(--button-secondary);
+  width: fit-content;
+  align-self: flex-start;
+  color: white;
+  font-weight: 600;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 16px;
 }
 </style>

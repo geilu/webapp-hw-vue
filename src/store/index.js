@@ -22,6 +22,10 @@ export default createStore({
     setPostsError(state, error) {
       state.postsError = error;
     },
+    likePost(state, postId) {
+      const post = state.posts.find((p) => p.id === postId);
+      if (post) post.likes = (post.likes ?? 0) + 1;
+    },
   },
 
   actions: {
@@ -31,7 +35,7 @@ export default createStore({
 
       try {
         const response = await fetch(
-          "https://api.npoint.io/63c7205cc41a9edbb178"
+          "https://api.npoint.io/f644ae863237d7cd40b1"
         );
 
         if (!response.ok) {
