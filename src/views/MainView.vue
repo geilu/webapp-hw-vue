@@ -2,6 +2,7 @@
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import PageHeader from "../components/PageHeader.vue";
+import PageFooter from "@/components/PageFooter.vue";
 import PostList from "../components/PostList.vue";
 
 const store = useStore();
@@ -28,5 +29,6 @@ onMounted(() => {
         />
       </section>
     </div>
+    <PageFooter></PageFooter>
   </div>
 </template>

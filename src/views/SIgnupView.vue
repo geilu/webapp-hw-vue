@@ -2,6 +2,7 @@
 import PageHeader from "../components/PageHeader.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import PageFooter from "@/components/PageFooter.vue";
 
 const router = useRouter();
 const password = ref("");
@@ -97,6 +98,7 @@ function validatePassword(password) {
         </div>
       </form>
     </div>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
