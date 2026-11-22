@@ -1,37 +1,55 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
+import { computed, ref } from "vue";
+import fallbackImage from "../assets/me.png";
 
 const props = defineProps({
-  postIndex: {
-    type: Number,
-    required: true,
-  },
+  profileImageURL: { type: String, default: "" },
+  username: { type: String, default: "" },
+  date: { type: String, default: "" },
+  imageURL: { type: String, default: "" },
+  content: { type: String, default: "" },
 });
 
-const store = useStore();
-const post = computed(() => store.getters.postAtIndex(props.postIndex));
+const showingFallback = ref(false);
+const fallbackFailed = ref(false);
+
+const profileImageSrc = computed(() =>
+  props.profileImageURL && !showingFallback.value
+    ? props.profileImageURL
+    : fallbackImage
+);
+
+function handleProfileImageError() {
+  if (profileImageSrc.value === fallbackImage) {
+    fallbackFailed.value = true;
+  } else {
+    showingFallback.value = true;
+  }
+}
 </script>
 
 <template>
-  <article v-if="post" class="post">
+  <article class="post">
     <div class="post-info">
       <a href="#">
         <img
+          v-if="!fallbackFailed"
           class="account-img"
-          :src="post.profileImageURL || '/res/images/me.png'"
-          alt="profile"
+          :src="profileImageSrc"
+          :alt="`${username} profile image`"
+          @error="handleProfileImageError"
         />
       </a>
 
-      <h3 class="account-name">{{ post.username }}</h3>
-      <p class="post-date">{{ post.date }}</p>
+      <h3 class="account-name">{{ username }}</h3>
+      <p class="post-date">{{ date }}</p>
     </div>
 
-    <div v-if="post.imageURL" class="post-image">
-      <img class="post-img" :src="post.imageURL" alt="post image" />
+    <div v-if="imageURL" class="post-image">
+      <img class="post-img" :src="imageURL" alt="Post image" />
     </div>
 
-    <p class="account-content">{{ post.content }}</p>
+    <p class="account-content">{{ content }}</p>
   </article>
 </template>
+l

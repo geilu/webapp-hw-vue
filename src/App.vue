@@ -26,30 +26,279 @@
   text-align: center;
   color: #2c3e50;
 }
+html,
 body {
+  height: 100%;
   margin: 0;
+}
+
+body {
   line-height: 1.6;
+  margin: 0;
 }
 
-.post {
+body.full-height {
   display: flex;
-  padding: 1em;
-  border-radius: 8px;
   flex-direction: column;
-  gap: 1em;
-  border: 1px solid transparent;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  height: 2px;
+  background-color: #abc7f4;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.1em;
+  float: right;
+}
+
+section {
+  padding: 2em;
+  display: block;
+}
+.header {
+  padding-left: 1em;
+  padding-right: 1em;
   background-color: var(--background-light);
-}
-
-.post-info {
-  padding: 0.5em 0.75em;
-  display: flex;
+  min-height: 5em;
   align-items: center;
-  gap: 0.75em;
-  color: #34495e;
-  font-size: 0.99em;
+  flex: none;
+}
+.active-tab {
+  text-decoration: underline;
+  background: var(--background-dark);
 }
 
+/* Descendant selector */
+.nav a {
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  color: #34495e;
+  border-radius: 8px;
+  font-weight: 800;
+  margin-right: 0.5em;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+/* Pseudo-class selector */
+.nav a:hover {
+  background-color: var(--background-dark);
+  color: var(--dark);
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+}
+
+/* Child selector */
+div > h1 {
+  text-decoration: underline;
+}
+
+/* Adjacent sibling selector */
+label + textarea {
+  border-color: var(--dark);
+  border-radius: 10px;
+}
+
+/* General sibling selector */
+a ~ p {
+  font-weight: 100;
+  color: var(--gray);
+  font-style: italic;
+}
+
+.grid {
+  margin: 20px auto;
+  width: 100%;
+  border: 1px solid #746161;
+  background-color: #ddd;
+  display: grid;
+  grid-template-columns: auto auto;
+  /*
+    grid-template-columns - the grid-template-columns CSS property defines the numbers and
+    sizing functions of the grid columns.
+  */
+  gap: 10px 10px;
+  /*
+  gap: row-gap and column-gap.
+  */
+}
+
+.grid p {
+  background-color: rgb(177, 164, 164);
+  color: white;
+  padding: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.img {
+  float: right;
+}
+
+.account-img {
+  display: block;
+  width: 3em;
+  height: 3em;
+}
+
+.text-label {
+  font-size: 1rem;
+  color: var(--dark);
+}
+
+.fill {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-card {
+  padding: 4em;
+  background-color: var(--background-light);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  width: 30em;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-items: left;
+  flex-wrap: wrap;
+}
+.form-row textarea {
+  resize: none;
+  padding: 0.5em;
+  flex: 1;
+  border: 1px solid var(--border-medium);
+}
+
+.login-row {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+.login-row h2 {
+  margin: 0;
+  font-size: 1.25em;
+  align-self: center;
+}
+.login-row h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.login-row input {
+  margin: 0.5em;
+  padding: 0.25em;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+}
+
+.login-row input:user-invalid {
+  border: 1px solid var(--error);
+  border-radius: 6px;
+}
+.login-row a {
+  font-size: 1rem;
+}
+.error-text {
+  display: none;
+  margin: 0 0 0 0.5em;
+  font-size: 0.9rem;
+  color: var(--error);
+}
+input:user-invalid + .error-text {
+  display: block;
+}
+
+.button-cta {
+  cursor: pointer;
+  background-color: var(--button-cta);
+  color: white;
+  font-weight: 600;
+  padding: 0.8em 2em;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  align-self: end;
+}
+.button-cta:hover {
+  background-color: var(--button-cta-hover);
+}
+
+.button-secondary {
+  cursor: pointer;
+  background-color: var(--button-secondary);
+  color: white;
+  padding: 0.5em 0.8em;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.button-secondary:hover {
+  background-color: var(--button-secondary-hover);
+}
+.button-icon {
+  cursor: pointer;
+}
+.profile-dropdown {
+  position: absolute;
+  right: 1em;
+  top: 4em;
+  background-color: var(--background-pale);
+  padding: 0.5em 1em 1em 1em;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  color: black;
+  font-size: 18px;
+}
+.profile-dropdown li {
+  width: 100%;
+  margin-top: 0.5em;
+  color: var(--gray);
+}
+.profile-dropdown a {
+  border-radius: 6px;
+  display: block;
+  color: black;
+  transition: background-color 0.1s ease-in-out;
+  width: 100%;
+}
+.profile-dropdown a:hover {
+  background-color: var(--background-light);
+  transition: background-color 0.1s ease-in-out;
+}
 .post-list {
   display: flex;
   flex-direction: column;
@@ -65,21 +314,61 @@ body {
 .post-date {
 }
 
-.content-center {
-  flex: 1;
+.post-info {
+  padding: 0.5em 0.75em;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 0.75em;
+  color: #34495e;
+  font-size: 0.99em;
+}
+.post {
+  display: flex;
+  padding: 1em;
+  border-radius: 8px;
+  flex-direction: column;
+  gap: 1em;
+  border: 1px solid transparent;
+  background-color: var(--background-light);
 }
 
-.img {
-  float: right;
+.footer {
+  padding: 1em;
+  background-color: var(--background-light);
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.footer-items li {
+  color: var(--dark);
 }
 
-.account-img {
-  display: block;
-  width: 3em;
-  height: 3em;
+@media (max-width: 800px) {
+  .img {
+    display: none;
+  }
+  .form-card {
+    padding: 2em;
+  }
+}
+@media (min-width: 800px) {
+  .header,
+  .nav {
+    display: flex;
+  }
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/*
+ Applies when the browser's width is 1000px wide or wider:
+ */
+
+@media (min-width: 1000px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 </style>

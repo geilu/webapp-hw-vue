@@ -2,11 +2,10 @@
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import PageHeader from "../components/PageHeader.vue";
-import PostListCard from "../components/PostList.vue";
+import PostList from "../components/PostList.vue";
 
 const store = useStore();
-
-const postIndexes = computed(() => store.getters.postIndexes);
+const posts = computed(() => store.state.posts);
 
 onMounted(() => {
   store.dispatch("fetchPosts");
@@ -16,13 +15,16 @@ onMounted(() => {
 <template>
   <div>
     <PageHeader activeTab="home" />
-    <h1>Posts</h1>
     <div class="content-center">
       <section id="post-list" class="post-list">
-        <PostListCard
-          v-for="postIndex in postIndexes"
-          :key="postIndex"
-          :post-index="postIndex"
+        <PostList
+          v-for="post in posts"
+          :key="post.id"
+          :profileImageURL="post.profileImageURL"
+          :username="post.username"
+          :date="post.date"
+          :imageURL="post.imageURL"
+          :content="post.content"
         />
       </section>
     </div>
