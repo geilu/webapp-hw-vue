@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    "vue/setup-compiler-macros": true, // eslint complains about props without this (older eslint ver)
   },
   extends: [
     "plugin:vue/vue3-essential",
