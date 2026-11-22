@@ -18,8 +18,8 @@ onMounted(() => {
     <div class="content-center">
       <section id="post-list" class="post-list">
         <PostList
-          v-for="post in posts"
-          :key="post.id"
+          v-for="(post, index) in posts"
+          :key="index"
           :profileImageURL="post.profileImageURL"
           :username="post.username"
           :date="post.date"
@@ -30,3 +30,20 @@ onMounted(() => {
     </div>
   </div>
 </template>
+<style scoped>
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+  max-width: 50em;
+}
+
+.content-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>

@@ -36,20 +36,53 @@ function handleProfileImageError() {
           v-if="!fallbackFailed"
           class="account-img"
           :src="profileImageSrc"
-          :alt="`${username} profile image`"
+          :alt="`profile`"
           @error="handleProfileImageError"
         />
       </a>
 
-      <h3 class="account-name">{{ username }}</h3>
+      <h3>{{ username }}</h3>
       <p class="post-date">{{ date }}</p>
     </div>
 
-    <div v-if="imageURL" class="post-image">
+    <div v-if="imageURL">
       <img class="post-img" :src="imageURL" alt="Post image" />
     </div>
 
-    <p class="account-content">{{ content }}</p>
+    <p class="post-content">{{ content }}</p>
   </article>
 </template>
 l
+<style scoped>
+.post-img {
+  width: 100%;
+}
+.post-content {
+  text-align: justify;
+}
+.post-date {
+}
+
+.post-info {
+  padding: 0.5em 0.75em;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  color: #34495e;
+  font-size: 0.99em;
+}
+.post {
+  display: flex;
+  padding: 1em;
+  border-radius: 8px;
+  flex-direction: column;
+  gap: 1em;
+  border: 1px solid transparent;
+  background-color: var(--background-light);
+}
+.account-img {
+  display: block;
+  width: 3em;
+  height: 3em;
+}
+</style>

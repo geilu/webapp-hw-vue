@@ -150,12 +150,6 @@ a ~ p {
   float: right;
 }
 
-.account-img {
-  display: block;
-  width: 3em;
-  height: 3em;
-}
-
 .text-label {
   font-size: 1rem;
   color: var(--dark);
@@ -166,14 +160,6 @@ a ~ p {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-.content-center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .form-card {
@@ -299,38 +285,6 @@ input:user-invalid + .error-text {
   background-color: var(--background-light);
   transition: background-color 0.1s ease-in-out;
 }
-.post-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
-  width: 100%;
-  max-width: 50em;
-}
-
-.post-img {
-  width: 100%;
-}
-
-.post-date {
-}
-
-.post-info {
-  padding: 0.5em 0.75em;
-  display: flex;
-  align-items: center;
-  gap: 0.75em;
-  color: #34495e;
-  font-size: 0.99em;
-}
-.post {
-  display: flex;
-  padding: 1em;
-  border-radius: 8px;
-  flex-direction: column;
-  gap: 1em;
-  border: 1px solid transparent;
-  background-color: var(--background-light);
-}
 
 .footer {
   padding: 1em;
@@ -351,11 +305,11 @@ input:user-invalid + .error-text {
   }
 }
 @media (min-width: 800px) {
-  .header,
+  .page-header,
   .nav {
     display: flex;
   }
-  .header {
+  .page-header {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -366,7 +320,7 @@ input:user-invalid + .error-text {
  */
 
 @media (min-width: 1000px) {
-  .header {
+  .page-header {
     flex-direction: row;
     justify-content: space-between;
   }
