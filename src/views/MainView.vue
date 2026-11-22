@@ -11,6 +11,10 @@ const posts = computed(() => store.state.posts);
 onMounted(() => {
   store.dispatch("fetchPosts");
 });
+
+function handleLike(postId) {
+  store.commit("likePost", postId);
+}
 </script>
 
 <template>
@@ -26,6 +30,8 @@ onMounted(() => {
           :date="post.date"
           :imageURL="post.imageURL"
           :content="post.content"
+          :likes="post.likes ?? 0"
+          @like="handleLike(post.id)"
         />
       </section>
     </div>

@@ -3,7 +3,13 @@
 </template>
 
 <style>
-:root {
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
   --background-dark: #a2ccea;
   --background-light: #c8e5fa;
   --background-pale: #e9f8ff;
@@ -15,25 +21,10 @@
   --dark: #092747;
   --gray: #646174;
   --error: #c90a0a;
-  font-size: 1.1rem;
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 html,
 body {
   height: 100%;
-  margin: 0;
-}
-
-body {
-  line-height: 1.6;
   margin: 0;
 }
 
