@@ -15,6 +15,10 @@ onMounted(() => {
 function handleLike(postId) {
   store.commit("likePost", postId);
 }
+
+function resetLikes() {
+  store.commit("resetLikes");
+}
 </script>
 
 <template>
@@ -34,6 +38,7 @@ function handleLike(postId) {
           @like="handleLike(post.id)"
         />
       </section>
+      <button v-on:click="resetLikes">Reset likes</button>
     </div>
     <PageFooter></PageFooter>
   </div>
