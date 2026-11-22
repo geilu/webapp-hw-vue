@@ -1,11 +1,45 @@
 <script setup>
 import PageHeader from "../components/PageHeader.vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+const password = ref("");
+const error = ref("");
 
 function onSubmit() {
+  error.value = validatePassword(password.value);
+  if (error.value) {
+    return; // stay on page and show error
+  }
   router.push(".");
+}
+
+function validatePassword(password) {
+  // specific length 8 <= pw <= 15
+  if (password.length < 8 || password.length > 15) {
+    return "length should be between 8 and 15";
+  }
+  // start with an uppercase char (also covers at least 1)
+  if (!password.match(/^[A-Z]/)) {
+    return "should start with an uppercase character";
+  }
+  // at least two lowercase chars
+  const lowercaseCount = (password.match(/[a-z]/g) || []).length;
+  if (lowercaseCount < 2) {
+    return "should include at least two lowercase characters";
+  }
+  // at least one numeric value
+  const digitCount = (password.match(/\d/g) || []).length;
+  if (digitCount < 1) {
+    return "should include at least one number";
+  }
+  // includes "_"
+  if (!password.includes("_")) {
+    return "should include an underscore";
+  }
+
+  return "";
 }
 </script>
 
@@ -24,16 +58,43 @@ function onSubmit() {
             required
           />
         </div>
-        <div class="signup-form-row">
-          <p>Password</p>
-          <input
-            type="password"
-            placeholder="Password"
-            class="signup-input"
-            required
-          />
+        <div class="signup-password-container">
+          <div class="signup-form-row">
+            <p>Password</p>
+            <input
+              v-model="password"
+              type="password"
+              placeholder="Password"
+              class="signup-input"
+              required
+            />
+          </div>
+          <p v-if="error" class="error">Password invalid - {{ error }}</p>
         </div>
         <button type="submit" class="signup-button">Sign up</button>
+        <div class="requirements-container">
+          <h3>Password requirements</h3>
+          <ul class="requirements-list">
+            <li>
+              <p>Must be between 8 and 15 characters</p>
+            </li>
+            <li>
+              <p>Must include at least one uppercase character</p>
+            </li>
+            <li>
+              <p>Must include at least two lowercase characters</p>
+            </li>
+            <li>
+              <p>Must include at least one number</p>
+            </li>
+            <li>
+              <p>Must begin with an uppercase character</p>
+            </li>
+            <li>
+              <p>Must include an underscore "_"</p>
+            </li>
+          </ul>
+        </div>
       </form>
     </div>
   </div>
@@ -66,6 +127,12 @@ function onSubmit() {
   padding: 0.875em 0.5em;
   border-radius: 8px;
   align-self: center;
+  font-size: 16px;
+}
+.signup-password-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .signup-button {
   background-color: #375482;
@@ -76,5 +143,29 @@ function onSubmit() {
   border-radius: 6px;
   font-weight: 800;
   cursor: pointer;
+}
+.requirements-container {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+}
+.requirements-container h3 {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+.error {
+  color: red;
+  text-align: right;
+  font-size: 14px;
+  margin: 0;
+}
+.requirements-list {
+  margin-left: 1em;
+  margin-top: 0;
+  padding: 0;
+}
+.requirements-list li {
+  text-align: left;
 }
 </style>
